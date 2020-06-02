@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dom diff算法</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="js/element.js"></script>
+    <script src="js/diff.js"></script>
+    <script src="js/patch.js"></script>
+    <script>
+        /*
+        let virtualDom = createElement('ul', {class: 'list'}, [
+                createElement('li', {class: 'item'}, ['a']),
+                createElement('li', {class: 'item'}, ['b']),
+                createElement('li', {class: 'item'}, ['c']),
+            ]
+        )
+        renderDom(render(virtualDom), document.getElementById('root'))
+        */
+        let virtualDom1 = createElement('ul', {class: 'list'}, [
+                createElement('li', {class: 'item'}, ['a1']),
+                createElement('li', {class: 'item'}, ['b']),
+                createElement('li', {class: 'item'}, ['c1']),
+            ]
+        )
+        let virtualDom2 = createElement('ul', {class: 'list1'}, [
+                createElement('li', {class: 'item'}, ['1']),
+                createElement('li', {class: 'item'}, ['b']),
+                createElement('div', {class: 'item'}, ['3']),
+            ]
+        )
+        let el = render(virtualDom1);
+        renderDom(el, document.getElementById('root'))
+        let patchs = diff(virtualDom1, virtualDom2);
+        // 将差异element放到页面中
+        patchRender(el, patchs)
+    </script>
+</body>
+</html>
